@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* Islamic green theme */
+    --background: 1 0 0;
+    --foreground: 0.16 0.01 253;
+    --card: 1 0 0;
+    --card-foreground: 0.16 0.01 253;
+    --popover: 1 0 0;
+    --popover-foreground: 0.16 0.01 253;
+    --primary: 0.42 0.14 151;
+    --primary-foreground: 1 0 0;
+    --secondary: 0.95 0.03 154;
+    --secondary-foreground: 0.42 0.14 151;
+    --muted: 0.95 0.03 154;
+    --muted-foreground: 0.42 0.02 253;
+    --accent: 0.84 0.16 91;
+    --accent-foreground: 0.16 0.01 253;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 1 0 0;
+    --border: 0.92 0.01 253;
+    --input: 0.92 0.01 253;
+    --ring: 0.42 0.14 151;
+
+    /* Custom semantic tokens */
+    --sage: 0.77 0.05 154;
+    --mint: 0.95 0.03 154;
+    --yellow-accent: 0.84 0.16 91;
+
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.42 0.14 151;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.95 0.03 154;
+    --sidebar-accent-foreground: 0.42 0.14 151;
+    --sidebar-border: 0.922 0 0;
+    --sidebar-ring: 0.42 0.14 151;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  }
+}
+
+/* Islamic geometric SVG pattern overlay */
+.islamic-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='rgba(255,255,255,0.12)' stroke-width='1'%3E%3Cpolygon points='30,5 55,20 55,50 30,65 5,50 5,20' /%3E%3Cpolygon points='30,15 47,24 47,44 30,53 13,44 13,24' /%3E%3Cline x1='30' y1='5' x2='30' y2='15' /%3E%3Cline x1='55' y1='20' x2='47' y2='24' /%3E%3Cline x1='55' y1='50' x2='47' y2='44' /%3E%3Cline x1='30' y1='65' x2='30' y2='53' /%3E%3Cline x1='5' y1='50' x2='13' y2='44' /%3E%3Cline x1='5' y1='20' x2='13' y2='24' /%3E%3C/g%3E%3C/svg%3E");
+}
+
+.islamic-pattern-green {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='rgba(31,111,62,0.08)' stroke-width='1'%3E%3Cpolygon points='30,5 55,20 55,50 30,65 5,50 5,20' /%3E%3Cpolygon points='30,15 47,24 47,44 30,53 13,44 13,24' /%3E%3Cline x1='30' y1='5' x2='30' y2='15' /%3E%3Cline x1='55' y1='20' x2='47' y2='24' /%3E%3Cline x1='55' y1='50' x2='47' y2='44' /%3E%3Cline x1='30' y1='65' x2='30' y2='53' /%3E%3Cline x1='5' y1='50' x2='13' y2='44' /%3E%3Cline x1='5' y1='20' x2='13' y2='24' /%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* 8-pointed Islamic star pattern — subtle green arabesque */
+.islamic-pattern-star {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='rgba(31,111,62,0.07)' stroke-width='1'%3E%3Cpath d='M40 10 L47 25 L63 25 L51 34 L55 50 L40 41 L25 50 L29 34 L17 25 L33 25 Z'/%3E%3Ccircle cx='40' cy='40' r='20' stroke-dasharray='3,4'/%3E%3Cpath d='M40 20 L40 60 M20 40 L60 40 M26 26 L54 54 M54 26 L26 54'/%3E%3Cpolygon points='40,5 45,20 60,20 49,29 53,44 40,35 27,44 31,29 20,20 35,20' opacity='0.5'/%3E%3C/g%3E%3C/svg%3E");
+}
