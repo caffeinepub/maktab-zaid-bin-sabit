@@ -16,7 +16,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        amiri: ["Amiri", "serif"],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -69,25 +70,34 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        /* Custom Islamic theme colors */
+        /* Semantic Islamic theme palette */
         islamic: {
-          green: "#1F6F3E",
-          sage: "#A7C4AE",
-          mint: "#EAF5EF",
-          yellow: "#F2C94C",
-          dark: "#111827",
-          body: "#4B5563",
-          border: "#E5E7EB",
+          green: "#0B5D3B",      /* Deep Green — primary */
+          "green-light": "#1A7A50",
+          "green-dark": "#073D27",
+          gold: "#D4AF37",        /* Gold — accent */
+          "gold-light": "#F0D060",
+          "gold-dark": "#A88A20",
+          mint: "#EBF5EF",
+          sage: "#C5DDD0",
+          dark: "#0A1F15",       /* Near-black green */
+          body: "#3D5A49",       /* Readable green-tinted body text */
+          border: "#D0E8DA",
         },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        "2xl": "1rem",
+        "3xl": "1.5rem",
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        card: "0 2px 12px 0 rgba(31,111,62,0.08)",
+        card: "0 2px 16px 0 rgba(11,93,59,0.08)",
+        "card-hover": "0 10px 36px 0 rgba(11,93,59,0.16)",
+        "bottom-nav": "0 -4px 20px rgba(0,0,0,0.08)",
+        glow: "0 0 24px rgba(212,175,55,0.35)",
       },
       keyframes: {
         "accordion-down": {
@@ -98,10 +108,15 @@ export default {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(24px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-up": "fade-up 0.5s ease-out forwards",
       },
     },
   },

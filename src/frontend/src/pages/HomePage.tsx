@@ -1,406 +1,535 @@
-import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import {
-  Award,
   BookOpen,
-  CheckCircle,
-  ChevronRight,
-  Clock,
-  Headphones,
-  Languages,
+  ChevronDown,
+  ClipboardCheck,
+  GraduationCap,
+  MapPin,
+  MessageCircle,
   Moon,
-  Star,
-  Sun,
+  Phone,
+  Play,
+  Shield,
   Users,
 } from "lucide-react";
 import { motion } from "motion/react";
 
-const courses = [
+/* ── Data ────────────────────────────────────────────────── */
+
+const features = [
+  {
+    icon: ClipboardCheck,
+    emoji: "📋",
+    title: "Online Admission",
+    desc: "Simple online form – apply anytime, anywhere from your phone.",
+  },
+  {
+    icon: GraduationCap,
+    emoji: "👨‍🏫",
+    title: "Experienced Teachers",
+    desc: "Qualified Ustaad with years of dedicated Islamic teaching experience.",
+  },
+  {
+    icon: Shield,
+    emoji: "🕌",
+    title: "Islamic Environment",
+    desc: "Safe, disciplined, and spiritually nurturing environment for every child.",
+  },
   {
     icon: BookOpen,
-    title: "Hifz ul Quran",
-    desc: "Complete memorization of the Holy Quran under qualified Huffaz with Tajweed.",
-  },
-  {
-    icon: Star,
-    title: "Nazra Quran",
-    desc: "Correct recitation with proper pronunciation and basic Tajweed rules.",
-  },
-  {
-    icon: Headphones,
-    title: "Tajweed ul Quran",
-    desc: "Detailed study of Quranic recitation rules to achieve perfect tilawah.",
-  },
-  {
-    icon: Languages,
-    title: "Islamic Studies",
-    desc: "Comprehensive Islamic education covering Fiqh, Aqeedah, and Seerah.",
+    emoji: "📖",
+    title: "Daily Learning System",
+    desc: "Structured daily lessons — Nazra, Hifz, Tajweed, and Islamic studies.",
   },
 ];
 
-const benefits = [
-  "Qualified and experienced Ulama as teachers",
-  "Individual attention with small class sizes",
-  "Safe, nurturing and Islamic environment",
-  "Flexible timings for school-going students",
+const videos = [
+  {
+    id: "RlC_c03dL3k",
+    title: "Gift Distribution Programme",
+    tag: "Event",
+    link: "https://www.youtube.com/watch?v=RlC_c03dL3k",
+  },
+  {
+    id: "qT9LdG9Kc6s",
+    title: "Islamic Reminder – Daily Dua",
+    tag: "Shorts",
+    link: "https://www.youtube.com/watch?v=qT9LdG9Kc6s",
+  },
+  {
+    id: "yV-21IV8R6A",
+    title: "Quran Recitation – Amma Para",
+    tag: "Classes",
+    link: "https://www.youtube.com/watch?v=yV-21IV8R6A",
+  },
 ];
 
-const timings = [
+const courses = [
   {
-    icon: Sun,
-    urdu: "Subah ki Class",
-    english: "Morning Session",
-    time: "7:00 – 9:00 AM",
-    bg: "bg-amber-50",
-    iconColor: "text-amber-500",
-    iconBg: "bg-amber-100",
-    border: "border-amber-200",
+    emoji: "📖",
+    title: "Qaida",
+    level: "Beginner",
+    levelColor: "bg-green-100 text-green-700",
+    desc: "Islamic alphabet aur basic Quran padhna seekhein. Har bacche ka pehla qadam.",
   },
   {
-    icon: Clock,
-    urdu: "Dopahar ki Class",
-    english: "Afternoon Session",
-    time: "2:00 – 4:00 PM",
-    bg: "bg-sky-50",
-    iconColor: "text-sky-500",
-    iconBg: "bg-sky-100",
-    border: "border-sky-200",
+    emoji: "📗",
+    title: "Nazra",
+    level: "Intermediate",
+    levelColor: "bg-blue-100 text-blue-700",
+    desc: "Pura Quran sahi makharij aur tajweed ke saath padhna.",
   },
   {
-    icon: Moon,
-    urdu: "Shaam ki Class",
-    english: "Evening Session",
-    time: "Maghrib – Isha",
-    bg: "bg-indigo-50",
-    iconColor: "text-indigo-500",
-    iconBg: "bg-indigo-100",
-    border: "border-indigo-200",
+    emoji: "🌙",
+    title: "Hifz",
+    level: "Advanced",
+    levelColor: "bg-purple-100 text-purple-700",
+    desc: "Quran hafiz banein — dedicated ustaad ki nighrani mein.",
+  },
+  {
+    emoji: "🎓",
+    title: "Aalim",
+    level: "Expert",
+    levelColor: "bg-amber-100 text-amber-700",
+    desc: "Mukammal Islamic education — Fiqh, Hadees, aur Quran tafseer.",
   },
 ];
+
+const stats = [
+  { value: "200+", label: "Students" },
+  { value: "10+", label: "Teachers" },
+  { value: "5+", label: "Courses" },
+];
+
+const WHATSAPP_LINK = "https://wa.me/918849100903?text=Assalamualaikum";
+
+/* ── Section helpers ─────────────────────────────────────── */
+
+function SectionTitle({
+  title,
+  subtitle,
+  light = false,
+}: {
+  title: string;
+  subtitle?: string;
+  light?: boolean;
+}) {
+  return (
+    <div className="text-center mb-10">
+      <h2
+        className={`text-2xl sm:text-3xl font-bold ${
+          light ? "text-white" : "text-islamic-green"
+        }`}
+      >
+        {title}
+      </h2>
+      {subtitle && (
+        <p
+          className={`mt-2 text-sm sm:text-base ${
+            light ? "text-white/70" : "text-islamic-body"
+          }`}
+        >
+          {subtitle}
+        </p>
+      )}
+      <div
+        className={`mx-auto mt-3 h-1 w-12 rounded-full ${
+          light ? "bg-islamic-gold" : "bg-islamic-gold"
+        }`}
+      />
+    </div>
+  );
+}
+
+/* ── Page Component ──────────────────────────────────────── */
 
 export function HomePage() {
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-20">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            {/* Left */}
-            <motion.div
-              initial={{ opacity: 0, x: -24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <span className="inline-block text-xs font-semibold text-islamic-green bg-islamic-mint px-3 py-1 rounded-full mb-4">
-                بسم الله الرحمن الرحيم
-              </span>
-              <h1 className="text-4xl sm:text-5xl font-bold text-islamic-dark leading-tight mb-3">
-                Deeni Taleem + Akhlaq + Tarbiyat
-              </h1>
-              <p className="text-islamic-green font-semibold text-base sm:text-lg mb-2">
-                Best Islamic education for children in Ahmedabad
-              </p>
-              <p className="text-islamic-body text-base sm:text-lg mb-6 leading-relaxed">
-                Dedicated to nurturing young minds with authentic Quranic
-                education, Islamic values, and moral character in a traditional
-                yet modern setting.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Link to="/admission">
-                  <Button
-                    data-ocid="home.primary_button"
-                    className="bg-islamic-green text-white hover:bg-islamic-green/90 rounded-full px-6 font-semibold"
-                  >
-                    Apply for Admission
-                    <ChevronRight className="w-4 h-4 ml-1" />
-                  </Button>
-                </Link>
-                <Link to="/courses">
-                  <Button
-                    data-ocid="home.secondary_button"
-                    variant="outline"
-                    className="rounded-full px-6 border-islamic-green text-islamic-green hover:bg-islamic-mint font-semibold"
-                  >
-                    View Courses
-                  </Button>
-                </Link>
-              </div>
-            </motion.div>
+    <div className="overflow-x-hidden">
+      {/* ── 1. HERO ────────────────────────────────────────── */}
+      <section
+        className="relative min-h-screen flex flex-col items-center justify-center text-center px-4 islamic-hero-pattern"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(11,93,59,0.78), rgba(7,61,39,0.88)), url('/assets/generated/mosque-hero.dim_1920x1080.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+        data-ocid="hero.section"
+      >
+        {/* Animated content */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="max-w-2xl mx-auto"
+        >
+          {/* Arabic Bismillah */}
+          <p
+            className="font-amiri text-islamic-gold text-2xl sm:text-3xl mb-4 leading-relaxed"
+            dir="rtl"
+            lang="ar"
+          >
+            بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+          </p>
 
-            {/* Right: Hero Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="relative"
+          {/* Madrasa name */}
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
+            Maktab Zaid Bin Sabit
+          </h1>
+
+          {/* Subheading */}
+          <p className="text-xl sm:text-2xl text-islamic-gold font-semibold mb-8">
+            Deeni Taleem for Every Child
+          </p>
+
+          {/* CTA */}
+          <Link to="/admission" data-ocid="hero.primary_button">
+            <button
+              type="button"
+              className="px-8 py-3.5 rounded-full bg-islamic-gold text-islamic-dark font-bold text-base hover:bg-islamic-gold-light transition-all shadow-glow hover:shadow-xl hover:scale-105 active:scale-95"
             >
-              <div className="rounded-2xl overflow-hidden shadow-card">
-                <img
-                  src="/assets/generated/hero-madrasa-classroom.dim_800x600.jpg"
-                  alt="Students learning at Maktab Zaid Bin Sabit"
-                  className="w-full h-72 sm:h-96 object-cover"
-                />
-              </div>
-              {/* Floating badge */}
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-card px-4 py-3 flex items-center gap-2">
-                <div className="w-9 h-9 rounded-full bg-islamic-mint flex items-center justify-center">
-                  <Users className="w-5 h-5 text-islamic-green" />
-                </div>
-                <div>
-                  <p className="text-xs text-islamic-body">Enrolled Students</p>
-                  <p className="text-sm font-bold text-islamic-dark">
-                    200+ Students
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+              Apply for Admission
+            </button>
+          </Link>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
+          <span className="text-white/50 text-xs tracking-widest uppercase">
+            Scroll
+          </span>
+          <ChevronDown className="w-5 h-5 text-white/60 animate-bounce-gentle" />
         </div>
       </section>
 
-      {/* Admission Banner */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-4">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="rounded-2xl overflow-hidden flex flex-col sm:flex-row shadow-card"
-          data-ocid="home.panel"
-        >
-          <div className="bg-islamic-yellow flex-1 px-6 py-5">
-            <div className="flex items-center gap-2 mb-1">
-              <Award className="w-5 h-5 text-islamic-dark" />
-              <span className="font-bold text-islamic-dark text-lg">
-                Admission Open 2026-27 | Last Date: 30 April | Limited Seats
-                Available
-              </span>
-            </div>
-            <p className="text-islamic-dark/80 text-sm">
-              New Session Starting Soon — Jaldi apply karen, jagah mahdood hai!
-            </p>
-          </div>
-          <div className="bg-islamic-green flex items-center justify-center px-6 py-5">
-            <Link to="/admission">
-              <Button
-                data-ocid="home.primary_button"
-                className="bg-white text-islamic-green hover:bg-islamic-mint rounded-full font-semibold px-6 whitespace-nowrap"
-              >
-                Apply Today →
-              </Button>
-            </Link>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Timings Section */}
-      <section className="py-16 bg-white islamic-pattern-star">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      {/* ── 2. FEATURES ────────────────────────────────────── */}
+      <section
+        className="py-16 sm:py-20 px-4 islamic-pattern-green"
+        data-ocid="features.section"
+      >
+        <div className="max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 }}
-            className="text-center mb-10"
+            transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl sm:text-3xl font-bold text-islamic-dark">
-              Maktab Timings / Awqaat
-            </h2>
-            <p className="text-islamic-body mt-2 text-sm sm:text-base">
-              Alag alag waqt par classes hoti hain — apni suvidha ke anusaar
-              ayen
-            </p>
+            <SectionTitle
+              title="Why Choose Us?"
+              subtitle="Everything your child needs for their Islamic journey"
+            />
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {timings.map((t, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {features.map((f, i) => (
               <motion.div
-                key={t.urdu}
-                initial={{ opacity: 0, y: 20 }}
+                key={f.title}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                data-ocid={`timings.item.${i + 1}`}
-                className={`${t.bg} rounded-2xl border ${t.border} p-6 text-center shadow-card hover:shadow-md transition-shadow`}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
               >
                 <div
-                  className={`w-14 h-14 rounded-full ${t.iconBg} flex items-center justify-center mx-auto mb-4`}
+                  className="card-lift bg-white rounded-2xl p-6 shadow-card border border-islamic-border text-center h-full"
+                  data-ocid={`features.item.${i + 1}`}
                 >
-                  <t.icon className={`w-7 h-7 ${t.iconColor}`} />
-                </div>
-                <h3 className="font-bold text-islamic-dark text-base mb-0.5">
-                  {t.urdu}
-                </h3>
-                <p className="text-xs text-islamic-body mb-3">{t.english}</p>
-                <div className="bg-white rounded-xl px-4 py-2 inline-block border border-islamic-green/20">
-                  <span className="font-bold text-islamic-green text-sm">
-                    {t.time}
-                  </span>
+                  <div className="text-4xl mb-4">{f.emoji}</div>
+                  <h3 className="font-bold text-islamic-green text-base mb-2">
+                    {f.title}
+                  </h3>
+                  <p className="text-islamic-body text-sm leading-relaxed">
+                    {f.desc}
+                  </p>
                 </div>
               </motion.div>
             ))}
           </div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-center text-xs text-islamic-body mt-6 max-w-xl mx-auto"
-          >
-            * Timings may vary — please contact us to confirm /{" "}
-            <span className="italic">
-              Awqaat badal sakte hain, confirm karne ke liye hamse rabta karen
-            </span>
-          </motion.p>
         </div>
       </section>
 
-      {/* Courses Section */}
-      <section className="bg-islamic-mint islamic-pattern-green py-16">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-islamic-dark">
-              Our Courses / Hamari Classes
-            </h2>
-            <p className="text-islamic-body mt-2 text-sm sm:text-base">
-              Comprehensive Islamic education programs for all ages
-            </p>
+      {/* ── 3. VIDEOS ──────────────────────────────────────── */}
+      <section
+        className="py-16 sm:py-20 px-4 bg-white"
+        data-ocid="videos.section"
+      >
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <SectionTitle
+              title="Watch Our Classes"
+              subtitle="See how we teach — real classes, real students"
+            />
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {videos.map((v, i) => (
+              <motion.a
+                key={v.id}
+                href={v.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.1 }}
+                className="group block rounded-2xl overflow-hidden shadow-card border border-islamic-border card-lift"
+                data-ocid={`videos.item.${i + 1}`}
+              >
+                {/* Thumbnail */}
+                <div className="relative aspect-video bg-islamic-dark overflow-hidden">
+                  <img
+                    src={`https://img.youtube.com/vi/${v.id}/hqdefault.jpg`}
+                    alt={v.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+                  {/* Play button */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:bg-white transition-all">
+                      <Play
+                        className="w-6 h-6 text-islamic-green ml-1"
+                        fill="currentColor"
+                      />
+                    </div>
+                  </div>
+                  {/* Tag */}
+                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-islamic-gold text-islamic-dark text-xs font-bold">
+                    {v.tag}
+                  </span>
+                </div>
+                {/* Title */}
+                <div className="p-4 bg-white">
+                  <p className="font-semibold text-islamic-green text-sm group-hover:text-islamic-green-light transition-colors">
+                    {v.title}
+                  </p>
+                  <p className="text-islamic-body text-xs mt-1 flex items-center gap-1">
+                    <Play className="w-3 h-3" /> Watch on YouTube
+                  </p>
+                </div>
+              </motion.a>
+            ))}
           </div>
+
+          <div className="text-center mt-8">
+            <Link to="/online-classes" data-ocid="videos.secondary_button">
+              <button
+                type="button"
+                className="px-6 py-2.5 rounded-full border-2 border-islamic-green text-islamic-green font-semibold text-sm hover:bg-islamic-green hover:text-white transition-all"
+              >
+                View All Classes →
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 4. COURSES ─────────────────────────────────────── */}
+      <section
+        className="py-16 sm:py-20 px-4 bg-islamic-mint islamic-pattern-green"
+        data-ocid="courses.section"
+      >
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <SectionTitle
+              title="Our Courses"
+              subtitle="From Qaida to Aalim — complete Islamic education"
+            />
+          </motion.div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {courses.map((course, i) => (
+            {courses.map((c, i) => (
               <motion.div
-                key={course.title}
+                key={c.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                data-ocid={`courses.item.${i + 1}`}
-                className="bg-white rounded-2xl p-5 shadow-card hover:shadow-md transition-shadow"
+                transition={{ duration: 0.4, delay: i * 0.1 }}
               >
-                <div className="w-11 h-11 rounded-full bg-islamic-mint flex items-center justify-center mb-4">
-                  <course.icon className="w-5 h-5 text-islamic-green" />
+                <div
+                  className="card-lift bg-white rounded-2xl overflow-hidden shadow-card border border-islamic-border h-full"
+                  data-ocid={`courses.item.${i + 1}`}
+                >
+                  {/* Color top strip */}
+                  <div className="h-2 bg-gradient-to-r from-islamic-green to-islamic-green-light" />
+                  <div className="p-6">
+                    <div className="text-4xl mb-3">{c.emoji}</div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="font-bold text-islamic-green text-lg">
+                        {c.title}
+                      </h3>
+                    </div>
+                    <span
+                      className={`inline-block px-2 py-0.5 rounded-full text-xs font-semibold mb-3 ${c.levelColor}`}
+                    >
+                      {c.level}
+                    </span>
+                    <p className="text-islamic-body text-sm leading-relaxed">
+                      {c.desc}
+                    </p>
+                    <Link
+                      to="/courses"
+                      className="inline-block mt-4 text-islamic-green text-sm font-semibold hover:text-islamic-gold transition-colors"
+                      data-ocid="courses.link"
+                    >
+                      Learn More →
+                    </Link>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-islamic-dark text-base mb-2">
-                  {course.title}
-                </h3>
-                <p className="text-islamic-body text-sm leading-relaxed">
-                  {course.desc}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 5. STATS ───────────────────────────────────────── */}
+      <section
+        className="py-14 sm:py-16 px-4 bg-islamic-green islamic-pattern"
+        data-ocid="stats.section"
+      >
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, scale: 0.85 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.1 }}
+                className="text-center"
+                data-ocid={`stats.item.${i + 1}`}
+              >
+                <p className="text-3xl sm:text-4xl font-bold text-islamic-gold">
+                  {s.value}
+                </p>
+                <p className="text-white/70 text-sm mt-1 font-medium">
+                  {s.label}
                 </p>
               </motion.div>
             ))}
           </div>
-          <div className="text-center mt-8">
-            <Link to="/courses">
-              <Button
-                data-ocid="courses.secondary_button"
-                variant="outline"
-                className="rounded-full border-islamic-green text-islamic-green hover:bg-white font-semibold px-6"
+        </div>
+      </section>
+
+      {/* ── 6. ABOUT US ────────────────────────────────────── */}
+      <section
+        className="py-16 sm:py-20 px-4 bg-white"
+        data-ocid="about.section"
+      >
+        <div className="max-w-2xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <SectionTitle title="About Us" />
+            <div className="text-4xl mb-5">🕌</div>
+            <p className="text-islamic-body text-base sm:text-lg leading-relaxed mb-8">
+              We provide quality Islamic education for children in a peaceful
+              environment. Our dedicated teachers guide every child with care,
+              discipline, and love for the Quran and Islamic values.
+            </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-8">
+              {[
+                { icon: Users, label: "Small Batch System" },
+                { icon: BookOpen, label: "Quran Focus" },
+                { icon: Moon, label: "Islamic Values" },
+                { icon: Shield, label: "Safe Environment" },
+              ].map(({ icon: Icon, label }) => (
+                <div
+                  key={label}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-islamic-mint border border-islamic-border text-islamic-green text-sm font-medium"
+                >
+                  <Icon className="w-4 h-4" />
+                  {label}
+                </div>
+              ))}
+            </div>
+            <Link to="/admission" data-ocid="about.primary_button">
+              <button
+                type="button"
+                className="px-8 py-3 rounded-full bg-islamic-green text-white font-bold hover:bg-islamic-green-light transition-all shadow-card hover:shadow-card-hover"
               >
-                View All Courses
-              </Button>
+                Apply for Admission
+              </button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-16 bg-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="grid md:grid-cols-2 gap-10 items-center">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-islamic-dark mb-6">
-                Why Choose Us?
-              </h2>
-              <ul className="space-y-4">
-                {benefits.map((benefit, i) => (
-                  <motion.li
-                    key={benefit}
-                    initial={{ opacity: 0, x: -16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="flex items-start gap-3"
-                  >
-                    <CheckCircle className="w-5 h-5 text-islamic-green flex-shrink-0 mt-0.5" />
-                    <span className="text-islamic-body text-sm sm:text-base">
-                      {benefit}
-                    </span>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-            <div className="bg-islamic-mint rounded-2xl p-8 text-center">
-              <div className="text-5xl font-bold text-islamic-green mb-2">
-                15+
-              </div>
-              <p className="text-islamic-body mb-6">
-                Years of Excellence in Islamic Education
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white rounded-xl p-4">
-                  <div className="text-2xl font-bold text-islamic-green">
-                    200+
-                  </div>
-                  <div className="text-xs text-islamic-body mt-1">
-                    Enrolled Students
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl p-4">
-                  <div className="text-2xl font-bold text-islamic-green">
-                    12+
-                  </div>
-                  <div className="text-xs text-islamic-body mt-1">
-                    Expert Teachers
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl p-4">
-                  <div className="text-2xl font-bold text-islamic-green">8</div>
-                  <div className="text-xs text-islamic-body mt-1">
-                    Courses Offered
-                  </div>
-                </div>
-                <div className="bg-white rounded-xl p-4">
-                  <div className="text-2xl font-bold text-islamic-green">
-                    150+
-                  </div>
-                  <div className="text-xs text-islamic-body mt-1">
-                    Graduates
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ── 7. CONTACT ─────────────────────────────────────── */}
+      <section
+        className="py-16 sm:py-20 px-4 bg-islamic-mint islamic-pattern-green"
+        data-ocid="contact.section"
+      >
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <SectionTitle title="Contact Us" subtitle="Hamare saath jurein" />
+          </motion.div>
 
-      {/* Testimonial */}
-      <section className="bg-islamic-mint py-14">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-          <div className="flex justify-center mb-4">
-            {[1, 2, 3, 4, 5].map((s) => (
-              <Star
-                key={s}
-                className="w-5 h-5 text-islamic-yellow fill-islamic-yellow"
-              />
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            {/* Phone */}
+            <div className="bg-white rounded-2xl p-6 shadow-card border border-islamic-border flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full bg-islamic-green/10 flex items-center justify-center flex-shrink-0">
+                <Phone className="w-5 h-5 text-islamic-green" />
+              </div>
+              <div>
+                <p className="text-xs text-islamic-body uppercase tracking-widest font-semibold mb-0.5">
+                  Phone
+                </p>
+                <p className="font-bold text-islamic-green text-lg">
+                  8849100903
+                </p>
+              </div>
+            </div>
+
+            {/* Address */}
+            <div className="bg-white rounded-2xl p-6 shadow-card border border-islamic-border flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full bg-islamic-green/10 flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-5 h-5 text-islamic-green" />
+              </div>
+              <div>
+                <p className="text-xs text-islamic-body uppercase tracking-widest font-semibold mb-0.5">
+                  Address
+                </p>
+                <p className="text-islamic-body text-sm leading-relaxed">
+                  2nd Floor, Muhammadi Jama Masjid (Markaz), Ahele Hadees,
+                  Parixitlal Nagar, Behrampura, Ahmedabad – 380028
+                </p>
+              </div>
+            </div>
           </div>
-          <blockquote className="text-islamic-dark text-lg sm:text-xl font-medium leading-relaxed mb-6">
-            "Maktab Zaid Bin Sabit has transformed our child's relationship with
-            the Quran. The teachers are dedicated, patient and truly inspiring.
-            We are so grateful."
-          </blockquote>
-          <div className="flex items-center justify-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-islamic-green flex items-center justify-center">
-              <span className="text-white text-sm font-bold">AM</span>
-            </div>
-            <div className="text-left">
-              <p className="text-sm font-semibold text-islamic-dark">
-                Ahmed Malik
-              </p>
-              <p className="text-xs text-islamic-body">
-                Parent of a Hifz Student
-              </p>
-            </div>
+
+          <div className="text-center">
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-ocid="contact.primary_button"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full font-bold text-white transition-all hover:scale-105 active:scale-95 shadow-md"
+              style={{ backgroundColor: "#25D366" }}
+            >
+              <MessageCircle className="w-5 h-5" />
+              Chat on WhatsApp
+            </a>
           </div>
         </div>
       </section>

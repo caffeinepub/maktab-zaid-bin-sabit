@@ -1,7 +1,8 @@
 import { RouterProvider, createRouter } from "@tanstack/react-router";
-import { routeTree } from "./routeTree";
+import { adminRouteTree, routeTree } from "./routeTree";
 
 const router = createRouter({ routeTree });
+const adminRouter = createRouter({ routeTree: adminRouteTree });
 
 declare module "@tanstack/react-router" {
   interface Register {
@@ -10,5 +11,9 @@ declare module "@tanstack/react-router" {
 }
 
 export default function App() {
+  const isAdmin = window.location.pathname.startsWith("/admin");
+  if (isAdmin) {
+    return <RouterProvider router={adminRouter} />;
+  }
   return <RouterProvider router={router} />;
 }
